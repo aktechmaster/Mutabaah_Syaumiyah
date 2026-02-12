@@ -129,21 +129,32 @@
             </div>
 
             <div>
-                <label class="block text-lg font-semibold text-white mb-3">Pelaksanaan Sholat</label>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                    <script>
-                        const sholats = ['Subuh', 'Dzuhur', 'Ashar', 'Maghrib', 'Isya', 'Dhuha', 'Tarawih', 'Tahajud'];
-                        sholats.forEach(s => {
-                            document.write(`
-                                <label class="flex items-center p-3 rounded-lg border border-gray-700 bg-gray-800/50 cursor-pointer hover:bg-gray-700/50 transition-all">
-                                    <input type="checkbox" name="sholat" value="${s}" class="w-4 h-4 text-teal-500 bg-transparent border-gray-500 rounded focus:ring-teal-500 focus:ring-2">
-                                    <span class="ml-2 text-sm text-gray-300">${s}</span>
-                                </label>
-                            `);
-                        });
-                    </script>
-                </div>
-            </div>
+    <label class="block text-lg font-semibold text-white mb-3">Pelaksanaan Sholat</label>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <script>
+            const sholats = ['Subuh', 'Dzuhur', 'Ashar', 'Maghrib', 'Isya', 'Dhuha', 'Tarawih', 'Tahajud'];
+            // 1. Daftar sholat yang ingin ditebalkan
+            const sholatWajib = ['Subuh', 'Dzuhur', 'Ashar', 'Maghrib', 'Isya'];
+
+            sholats.forEach(s => {
+                // 2. Cek apakah 's' ada di dalam daftar sholatWajib
+                const isWajib = sholatWajib.includes(s);
+                
+                // 3. Tentukan class CSS berdasarkan hasil cek tadi
+                // Jika wajib: font-bold dan text-white (biar lebih kontras)
+                // Jika sunnah: font-normal dan text-gray-300
+                const textClass = isWajib ? 'font-bold text-white' : 'font-normal text-gray-300';
+
+                document.write(`
+                    <label class="flex items-center p-3 rounded-lg border border-gray-700 bg-gray-800/50 cursor-pointer hover:bg-gray-700/50 transition-all">
+                        <input type="checkbox" name="sholat" value="${s}" class="w-4 h-4 text-teal-500 bg-transparent border-gray-500 rounded focus:ring-teal-500 focus:ring-2">
+                        <span class="ml-2 text-sm ${textClass}">${s}</span>
+                    </label>
+                `);
+            });
+        </script>
+    </div>
+</div>
 
             <div>
                 <label class="block text-sm font-medium text-teal-200 mb-2">Dominan Sholat Wajib Dilakukan Di:</label>
